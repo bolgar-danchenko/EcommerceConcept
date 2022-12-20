@@ -8,16 +8,16 @@
 import SwiftUI
 
 struct Answer: Decodable {
-    var hotSales: [HotSales]
-    var bestSeller: [BestSeller]
+    var hotSalesArray: [HotSalesProduct]
+    var bestSellerArray: [BestSellerProduct]
     
     enum CodingKeys: String, CodingKey {
-        case hotSales = "home_store"
-        case bestSeller = "best_seller"
+        case hotSalesArray = "home_store"
+        case bestSellerArray = "best_seller"
     }
 }
 
-struct HotSales: Decodable, Identifiable {
+struct HotSalesProduct: Decodable, Identifiable {
     var id: Int
     var isNew: Bool?
     var title: String
@@ -39,7 +39,7 @@ struct HotSales: Decodable, Identifiable {
     }
 }
 
-struct BestSeller: Decodable, Identifiable {
+struct BestSellerProduct: Decodable, Identifiable {
     var id: Int
     var isFavorites: Bool
     var title: String

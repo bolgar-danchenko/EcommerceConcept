@@ -44,7 +44,7 @@ class DownloadManager {
         .resume()
     }
     
-    func getDetails(completion: @escaping (Details) -> ()) {
+    func getDetails(completion: @escaping (DetailProduct) -> ()) {
         guard let url = URL(string: detailsUrlString) else {
             print("Invalid url")
             return
@@ -64,7 +64,7 @@ class DownloadManager {
             guard let data else { return }
             
             do {
-                let answer = try JSONDecoder().decode(Details.self, from: data)
+                let answer = try JSONDecoder().decode(DetailProduct.self, from: data)
                 completion(answer)
             } catch {
                 print(error)

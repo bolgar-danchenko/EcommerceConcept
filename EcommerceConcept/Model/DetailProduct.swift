@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Details: Codable, Identifiable {
+struct DetailProduct: Codable, Identifiable {
     var id: String
     var title: String
     var cpu: String
