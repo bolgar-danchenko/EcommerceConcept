@@ -11,7 +11,7 @@ import SwiftUI
 struct EcommerceConceptApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            TabBar()
         }
     }
 }
