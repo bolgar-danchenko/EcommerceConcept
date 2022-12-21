@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// To for Accepting List
 struct SnapCarousel<Content: View, T: Identifiable>: View {
     
     var content: (T) -> Content
@@ -19,7 +18,7 @@ struct SnapCarousel<Content: View, T: Identifiable>: View {
     @Binding var index: Int
     
     init(spacing: CGFloat = 15,
-         trailingSpace: CGFloat = 100,
+         trailingSpace: CGFloat = 150,
          index: Binding<Int>,
          items: [T],
          @ViewBuilder content: @escaping (T) -> Content) {
@@ -39,8 +38,6 @@ struct SnapCarousel<Content: View, T: Identifiable>: View {
         
         GeometryReader { proxy in
             
-            // Setting correct width for snap carousel
-            // One sided snap carousel
             let width = proxy.size.width - (tralingSpace - spacing)
             let adjustmentWidth = (tralingSpace / 2) - spacing
             
@@ -50,9 +47,7 @@ struct SnapCarousel<Content: View, T: Identifiable>: View {
                         .frame(width: proxy.size.width - tralingSpace)
                 }
             }
-            // Spacing will be horizontal padding
             .padding(.horizontal, spacing)
-            // Setting only after 0th index
             .offset(x: (CGFloat(currentIndex) * -width) + (currentIndex != 0 ? adjustmentWidth : 0) + offset)
             .gesture(
                 DragGesture()
@@ -60,39 +55,25 @@ struct SnapCarousel<Content: View, T: Identifiable>: View {
                         out = value.translation.width
                     })
                     .onEnded({ value in
-                        
-                        // Updating current index
                         let offsetX = value.translation.width
                         
-                        // were going to convert the translation into progress (0 - 1)
-                        // and round the value
-                        // based on the progress increasing or decreasing the currentIndex
                         let progress = -offsetX / width
                         let roundIndex = progress.rounded()
                         
-                        // setting min
                         currentIndex = max(min(currentIndex + Int(roundIndex), list.count - 1), 0)
                         
-                        // updating index
                         currentIndex = index
                     })
                     .onChanged({ value in
-                        // updating only index
-                        // Updating current index
                         let offsetX = value.translation.width
                         
-                        // were going to convert the translation into progress (0 - 1)
-                        // and round the value
-                        // based on the progress increasing or decreasing the currentIndex
                         let progress = -offsetX / width
                         let roundIndex = progress.rounded()
                         
-                        // setting min
                         index = max(min(currentIndex + Int(roundIndex), list.count - 1), 0)
                     })
             )
         }
-        // Animating when offset = 0
         .animation(.easeInOut, value: offset == 0)
     }
 }
