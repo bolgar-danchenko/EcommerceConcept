@@ -14,7 +14,7 @@ class DownloadManager {
     let detailsUrlString = "https://run.mocky.io/v3/6c14c560-15c6-4248-b9d2-b4508df7d4f5"
     let basketUrlString = "https://run.mocky.io/v3/53539a72-3c5f-4f30-bbb1-6ca10d42c149"
     
-    func getProducts(completion: @escaping (Answer) -> ()) {
+    func getProducts(completion: @escaping (AllProducts) -> ()) {
         
         guard let url = URL(string: allProductsUrlString) else {
             print("Invalid url")
@@ -35,7 +35,7 @@ class DownloadManager {
             guard let data else { return }
             
             do {
-                let answer = try JSONDecoder().decode(Answer.self, from: data)
+                let answer = try JSONDecoder().decode(AllProducts.self, from: data)
                 completion(answer)
             } catch {
                 print(error)

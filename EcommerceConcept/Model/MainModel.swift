@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Answer: Decodable {
+struct AllProducts: Codable {
     var hotSalesArray: [HotSalesProduct]
     var bestSellerArray: [BestSellerProduct]
     
@@ -17,7 +17,7 @@ struct Answer: Decodable {
     }
 }
 
-struct HotSalesProduct: Decodable, Identifiable {
+struct HotSalesProduct: Codable, Identifiable {
     var id: Int
     var isNew: Bool?
     var title: String
@@ -39,7 +39,7 @@ struct HotSalesProduct: Decodable, Identifiable {
     }
 }
 
-struct BestSellerProduct: Decodable, Identifiable {
+struct BestSellerProduct: Codable, Identifiable {
     var id: Int
     var isFavorites: Bool
     var title: String
