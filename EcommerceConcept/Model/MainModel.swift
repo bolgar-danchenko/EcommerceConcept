@@ -29,6 +29,8 @@ struct HotSalesProduct: Codable, Identifiable {
         URL(string: pictureUrlString)
     }
     
+    lazy var image = AsyncImage(url: pictureUrl)
+    
     enum CodingKeys: String, CodingKey {
         case id
         case isNew = "is_new"
