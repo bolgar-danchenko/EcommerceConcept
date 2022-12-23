@@ -8,12 +8,20 @@
 import SwiftUI
 
 struct HotSalesTabView: View {
+    
+    @EnvironmentObject var sharedData: SharedDataModel
+    
     var body: some View {
         TabView {
             ForEach(hotSalesProducts) {
                 product in
                 HotSalesView(product: product)
                     .padding(.horizontal, 15)
+                    .onTapGesture {
+                        withAnimation {
+                            sharedData.showDetailProduct = true
+                        }
+                    }
             }
         }
         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))

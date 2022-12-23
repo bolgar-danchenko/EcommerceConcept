@@ -9,11 +9,11 @@ import SwiftUI
 
 struct DetailProductView: View {
     
+    @EnvironmentObject var sharedData: SharedDataModel
+    
     @State var currentIndex: Int = 0
     
     @State var images: [Image] = []
-    
-    @Namespace var animation
     
     var body: some View {
         VStack() {
@@ -23,7 +23,7 @@ struct DetailProductView: View {
             HStack {
                 Button {
                     withAnimation {
-                        
+                        sharedData.showDetailProduct = false
                     }
                 } label: {
                     Image(systemName: "chevron.backward")
@@ -224,7 +224,7 @@ struct DetailProductView: View {
                         Circle()
                             .frame(width: 40, height: 40)
                         
-                        Image(systemName: "checkmark").bold()
+                        Image(systemName: "checkmark")
                             .frame(width: 17, height: 12.5)
                             .foregroundColor(.white)
                     }
@@ -233,7 +233,7 @@ struct DetailProductView: View {
                         Circle()
                             .frame(width: 40, height: 40)
                         
-                        Image(systemName: "checkmark").bold()
+                        Image(systemName: "checkmark")
                             .frame(width: 17, height: 12.5)
                             .foregroundColor(.white).opacity(0)
                     }

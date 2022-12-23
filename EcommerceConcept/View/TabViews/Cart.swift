@@ -10,14 +10,13 @@ import SwiftUI
 struct Cart: View {
     
     @EnvironmentObject var sharedData: SharedDataModel
-    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
     var body: some View {
         VStack {
             HStack {
                 Button {
                     withAnimation {
-                        self.mode.wrappedValue.dismiss()
+                        sharedData.showCard = false
                     }
                 } label: {
                     Image(systemName: "chevron.backward")

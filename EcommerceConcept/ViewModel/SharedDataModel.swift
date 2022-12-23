@@ -9,13 +9,6 @@ import SwiftUI
 
 class SharedDataModel: ObservableObject {
     
-    // Detail product data
-    @Published var detailProduct: DetailProduct?
     @Published var showDetailProduct: Bool = false
-    
-    // Favorite products
-    @Published var favoriteProducts: [BestSellerProduct] = []
-    
-    // Basket
-//    @Published let basket: Basket = DownloadManager().getBasket()
+    @Published var showCard: Bool = false
 }

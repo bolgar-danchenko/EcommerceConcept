@@ -7,12 +7,15 @@
 
 import SwiftUI
 
-let rowSpacing: CGFloat = 10
-var gridLayout: [GridItem] {
-    return Array(repeating: GridItem(.flexible(), spacing: rowSpacing), count: 2)
-}
-
 struct ProductsGridView: View {
+    
+    @EnvironmentObject var sharedData: SharedDataModel
+    
+    let rowSpacing: CGFloat = 10
+    var gridLayout: [GridItem] {
+        return Array(repeating: GridItem(.flexible(), spacing: rowSpacing), count: 2)
+    }
+    
     var body: some View {
         
         LazyVGrid(columns: gridLayout, spacing: 30) {
@@ -21,7 +24,7 @@ struct ProductsGridView: View {
                 ProductItemView(product: product)
                     .onTapGesture {
                         withAnimation {
-                            
+                            sharedData.showDetailProduct = true
                         }
                     }
             }
@@ -32,5 +35,6 @@ struct ProductsGridView: View {
 struct ProductsGridView_Previews: PreviewProvider {
     static var previews: some View {
         ProductsGridView()
+            .environmentObject(SharedDataModel())
     }
 }
