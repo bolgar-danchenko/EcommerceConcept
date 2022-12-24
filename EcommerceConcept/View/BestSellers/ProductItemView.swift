@@ -32,7 +32,6 @@ struct ProductItemView: View {
                             .cornerRadius(10)
                         ProgressView()
                     }
-                        
                 }
                 
                 HStack() {
@@ -53,6 +52,7 @@ struct ProductItemView: View {
                     .foregroundColor(Color("Purple"))
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.horizontal, 20)
+                    .padding(.bottom, 15)
             }
             
             Button {
@@ -77,6 +77,6 @@ struct ProductItemView: View {
 
 struct ProductItemView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductItemView(product: bestSellerProducts[2])
+        ProductItemView(product: bestSellerProducts[0])
     }
 }

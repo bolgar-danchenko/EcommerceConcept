@@ -7,6 +7,7 @@
 
 import Foundation
 
+// Extension allows to decode json files stored in the application bundle
 extension Bundle {
     
     func decode<T>(_ file: String) -> T where T: Codable {

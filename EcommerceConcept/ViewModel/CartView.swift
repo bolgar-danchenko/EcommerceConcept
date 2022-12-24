@@ -15,15 +15,21 @@ struct CartView: View {
     var body: some View {
         
         HStack(spacing: 20) {
-            AsyncImage(
-                url: product.pictureUrl,
-                content: { image in
-                    image.image?.resizable()
-                        .frame(maxWidth: 88, maxHeight: 88)
-                        .aspectRatio(contentMode: .fill)
+            
+            AsyncImage(url: product.pictureUrl) { image in
+                image
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 88, height: 88)
+                    .cornerRadius(10)
+            } placeholder: {
+                ZStack {
+                    Color(uiColor: .white)
+                        .frame(width: 88, height: 88)
                         .cornerRadius(10)
+                    ProgressView()
                 }
-            )
+            }
             
             VStack(spacing: 5) {
                 Text(product.title)
@@ -76,6 +82,6 @@ struct CartView: View {
 
 struct CartView_Previews: PreviewProvider {
     static var previews: some View {
-        CartView(product: basket.basketProducts[0])
+        CartView(product: basket.basketProducts[1])
     }
 }

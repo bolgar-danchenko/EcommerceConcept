@@ -56,7 +56,7 @@ struct DetailProductView: View {
             
             // MARK: - Snap Carousel
             
-            SnapCarousel(spacing: 20, index: $currentIndex, items: images) { image in
+            PicturesSnapCarousel(spacing: 20, index: $currentIndex, items: images) { image in
                 
                 GeometryReader { proxy in
                     
@@ -71,11 +71,14 @@ struct DetailProductView: View {
             }
             .frame(maxHeight: .infinity, alignment: .top)
             .onAppear {
-                for imageUrl in detailProduct.pictureUrls {
-                    guard let safeUrl = imageUrl else { return }
-                    DownloadManager().downloadImage(imageUrl: safeUrl) { image in
-                        guard let newImage = image else { return }
-                        self.images.append(newImage)
+                
+                DispatchQueue.main.async {
+                    for imageUrl in detailProduct.pictureUrls {
+                        guard let safeUrl = imageUrl else { return }
+                        DownloadManager().downloadImage(imageUrl: safeUrl) { image in
+                            guard let newImage = image else { return }
+                            self.images.append(newImage)
+                        }
                     }
                 }
             }
@@ -222,6 +225,7 @@ struct DetailProductView: View {
                 HStack(spacing: 20) {
                     ZStack {
                         Circle()
+                            .foregroundColor(Color(uiColor: UIColor(hex: detailProduct.colorHexCodes[0]) ?? .black))
                             .frame(width: 40, height: 40)
                         
                         Image(systemName: "checkmark")
@@ -231,6 +235,7 @@ struct DetailProductView: View {
                     
                     ZStack {
                         Circle()
+                            .foregroundColor(Color(uiColor: UIColor(hex: detailProduct.colorHexCodes[1]) ?? .black))
                             .frame(width: 40, height: 40)
                         
                         Image(systemName: "checkmark")

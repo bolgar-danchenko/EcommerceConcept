@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SnapCarousel<Content: View, T: Identifiable>: View {
+struct PicturesSnapCarousel<Content: View, T: Identifiable>: View {
     
     var content: (T) -> Content
     var list: [T]

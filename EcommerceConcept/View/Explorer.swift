@@ -10,18 +10,15 @@ import SwiftUI
 struct Explorer: View {
     
     @StateObject var explorerData: ExplorerViewModel = ExplorerViewModel()
-    
     @EnvironmentObject var sharedData: SharedDataModel
-    
     @State private var searchText: String = ""
-    
     @State private var hotImages: [Image] = []
     
     var body: some View {
         
         VStack(spacing: 0) {
             
-            // Title bar
+            // MARK: - Title Bar
             HStack {
                 
                 Spacer()
@@ -41,11 +38,17 @@ struct Explorer: View {
                 
                 Spacer()
                 
-                Image("filter")
-                    .renderingMode(.template)
-                    .resizable()
-                    .frame(width: 11, height: 13)
-                    .foregroundColor(Color("Purple"))
+                Button {
+                    withAnimation {
+                        sharedData.showFilter = true
+                    }
+                } label: {
+                    Image("filter")
+                        .renderingMode(.template)
+                        .resizable()
+                        .frame(width: 11, height: 13)
+                        .foregroundColor(Color("Purple"))
+                }
             }
             .padding(.horizontal, 30)
             .padding(.bottom, 10)
@@ -54,7 +57,7 @@ struct Explorer: View {
             ScrollView {
                 VStack {
                     
-                    // Categories
+                    // MARK: - Categories
                     HStack {
                         
                         Text("Select Category")
@@ -86,9 +89,9 @@ struct Explorer: View {
                         .padding(.horizontal, 30)
                     }
                     
-                    // Search bar
+                    // MARK: - Search Bar
                     HStack(spacing: 15) {
-                        SearchBar()
+                        SearchBarView()
                         
                         Button {
                             
@@ -108,7 +111,7 @@ struct Explorer: View {
                     }
                     .padding(.horizontal, 40)
                     
-                    // Hot sales
+                    // MARK: - Hot Sales
                     HStack {
                         
                         Text("Hot Sales")
@@ -133,7 +136,7 @@ struct Explorer: View {
                         .padding(.top, -30)
                         .frame(height: 190)
                     
-                    // Best sellers
+                    // MARK: - Best Sellers
                     HStack {
                         
                         Text("Best Sellers")
@@ -160,7 +163,7 @@ struct Explorer: View {
             }
             .background(Color("Background"))
             
-            // Custom tab bar
+            // MARK: - Tab Bar
             HStack(spacing: 40) {
                 
                 Button {
@@ -179,12 +182,28 @@ struct Explorer: View {
                         sharedData.showCard = true
                     }
                 } label: {
-                    Image("cart")
-                        .resizable()
-                        .renderingMode(.template)
-                        .aspectRatio(contentMode: .fit)
-                        .frame(height: 20)
+                    ZStack(alignment: .topTrailing) {
+                        Image("cart")
+                            .resizable()
+                            .renderingMode(.template)
+                            .aspectRatio(contentMode: .fit)
+                            .frame(height: 20)
                         .foregroundColor(.white)
+                        
+                        ZStack {
+                            Circle()
+                                .frame(width: 15, height: 15)
+                            .foregroundColor(.red)
+                            
+                            Text("\(basket.basketProducts.count)")
+                                .font(.custom(mediumFont, size: 10))
+                                .foregroundColor(.white)
+                        }
+                        .padding(.top, -5)
+                        .padding(.trailing, -5)
+                        
+                    }
+                    
                 }
                 
                 Button {
@@ -208,8 +227,6 @@ struct Explorer: View {
                         .frame(height: 20)
                         .foregroundColor(.white)
                 }
-
-                
             }
             .padding(.top, 30)
             .padding(.bottom, 30)
@@ -218,6 +235,7 @@ struct Explorer: View {
             .background(Color("Purple"))
             .cornerRadius(30)
         }
+        // MARK: - Overlays
         .overlay(
             ZStack {
                 if sharedData.showDetailProduct {
@@ -228,11 +246,17 @@ struct Explorer: View {
                     Cart()
                         .environmentObject(sharedData)
                         .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .opacity))
+                } else if sharedData.showFilter {
+                    FilterView()
+                        .environmentObject(sharedData)
+                        .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .opacity))
                 }
             }
         )
         .ignoresSafeArea(.all, edges: .bottom)
     }
+    
+    // MARK: - ProductTypeView
     
     @ViewBuilder
     func ProductTypeView(type: ProductType) -> some View {
@@ -257,8 +281,10 @@ struct Explorer: View {
         }
     }
     
+    // SearchBarView
+    
     @ViewBuilder
-    func SearchBar() -> some View {
+    func SearchBarView() -> some View {
         HStack(spacing: 15) {
             Image("magnifier")
                 .resizable()
@@ -281,26 +307,11 @@ struct Explorer: View {
     }
 }
 
+// MARK: - Preview
+
 struct Explorer_Previews: PreviewProvider {
     static var previews: some View {
         Explorer()
             .environmentObject(SharedDataModel())
-    }
-}
-
-enum ProductType: String, CaseIterable {
-    case phones = "Phones"
-    case computer = "Computer"
-    case health = "Health"
-    case books = "Books"
-    case other = "Other"
-}
-
-extension View {
-    func placeholder<Content: View>(when shouldShow: Bool, alignment: Alignment = .leading, @ViewBuilder placeholder: () -> Content) -> some View {
-        ZStack(alignment: alignment) {
-            placeholder().opacity(shouldShow ? 1 : 0)
-            self
-        }
     }
 }

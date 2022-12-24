@@ -15,12 +15,22 @@ struct HotSalesView: View {
         ZStack {
             
             AsyncImage(url: product.pictureUrl) { image in
-                image.image?.resizable()
+                image
+                    .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(height: 182)
                     .frame(maxWidth: .infinity)
                     .background(Color.black)
                     .cornerRadius(10)
+            } placeholder: {
+                ZStack {
+                    Color(uiColor: .black)
+                        .frame(height: 182)
+                        .frame(maxWidth: .infinity)
+                        .cornerRadius(10)
+                    ProgressView()
+                        .tint(.white)
+                }
             }
             
             VStack(alignment: .leading) {
