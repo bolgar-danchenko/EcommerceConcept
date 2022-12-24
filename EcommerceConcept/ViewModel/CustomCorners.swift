@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// Used for Cart, Details and Filter
 struct CustomCorners: Shape {
     
     var corners: UIRectCorner

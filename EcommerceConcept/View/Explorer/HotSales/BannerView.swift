@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct HotSalesView: View {
+struct BannerView: View {
     
     @State var product: HotSalesProduct
     
@@ -75,9 +75,9 @@ struct HotSalesView: View {
     }
 }
 
-struct HotSalesView_Previews: PreviewProvider {
+struct BannerView_Previews: PreviewProvider {
     static var previews: some View {
-        HotSalesView(product: hotSalesProducts[0])
+        BannerView(product: hotSalesProducts[0])
             .padding()
             .background(Color("Background"))
     }

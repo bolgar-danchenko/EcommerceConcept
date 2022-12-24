@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct HotSalesTabView: View {
+struct HotSalesView: View {
     
     @EnvironmentObject var sharedData: SharedDataModel
     
@@ -36,7 +36,7 @@ struct HotSalesTabView: View {
             TabView {
                 ForEach(hotSalesProducts) {
                     product in
-                    HotSalesView(product: product)
+                    BannerView(product: product)
                         .padding(.all, 15)
                         .onTapGesture {
                             withAnimation {
@@ -52,8 +52,8 @@ struct HotSalesTabView: View {
     }
 }
 
-struct HotSalesTabView_Previews: PreviewProvider {
+struct HotSalesView_Previews: PreviewProvider {
     static var previews: some View {
-        HotSalesTabView()
+        HotSalesView()
     }
 }

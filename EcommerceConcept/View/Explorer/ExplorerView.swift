@@ -24,7 +24,7 @@ struct ExplorerView: View {
                     
                     SearchBarView()
                     
-                    HotSalesTabView()
+                    HotSalesView()
                     
                     BestSellersView()
                 }

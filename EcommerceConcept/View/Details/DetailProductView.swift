@@ -9,52 +9,13 @@ import SwiftUI
 
 struct DetailProductView: View {
     
-    @EnvironmentObject var sharedData: SharedDataModel
-    
     @State var currentIndex: Int = 0
-    
     @State var images: [Image] = []
     
     var body: some View {
         VStack() {
             
-            // MARK: - Navigation Bar
-            
-            HStack {
-                Button {
-                    withAnimation {
-                        sharedData.showDetailProduct = false
-                    }
-                } label: {
-                    Image(systemName: "chevron.backward")
-                        .foregroundColor(.white)
-                        .frame(width: 7, height: 14)
-                }
-                .frame(width: 37, height: 37)
-                .background(Color("Purple"))
-                .cornerRadius(10)
-                
-                Spacer()
-                
-                Text("Product Details")
-                    .font(.custom(mediumFont, size: 18))
-                
-                Spacer()
-                
-                Button {
-                    
-                } label: {
-                    Image("cart")
-                        .resizable()
-                        .frame(maxWidth: 14, maxHeight: 14)
-                }
-                .frame(width: 37, height: 37)
-                .background(Color("Orange"))
-                .cornerRadius(10)
-            }
-            .padding(.horizontal, 30)
-            
-            // MARK: - Snap Carousel
+            ProductNavigationView()
             
             PicturesSnapCarousel(spacing: 20, index: $currentIndex, items: images) { image in
                 
@@ -84,7 +45,6 @@ struct DetailProductView: View {
             }
             .padding(.top, 10)
             
-            // MARK: - Product Details
             ProductDetails()
         }
         .ignoresSafeArea()
@@ -100,8 +60,4 @@ struct DetailProductView_Previews: PreviewProvider {
     }
 }
 
-extension Image: Identifiable {
-    public var id: String {
-        UUID().uuidString
-    }
-}
+
