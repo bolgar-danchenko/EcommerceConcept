@@ -19,7 +19,7 @@ struct ProductsGridView: View {
     var body: some View {
         
         LazyVGrid(columns: gridLayout, spacing: 30) {
-            ForEach(bestSellerProducts) {
+            ForEach(sharedData.bestSellerProducts) {
                 product in
                 ProductItemView(product: product)
                     .onTapGesture {

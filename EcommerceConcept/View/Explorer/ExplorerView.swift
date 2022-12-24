@@ -46,15 +46,15 @@ struct ExplorerView: View {
             if sharedData.showDetailProduct {
                 DetailProductView()
                     .environmentObject(sharedData)
-                    .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .opacity))
-            } else if sharedData.showCard {
+                    .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .trailing)))
+            } else if sharedData.showCart {
                 CartView()
                     .environmentObject(sharedData)
-                    .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .opacity))
+                    .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .trailing)))
             } else if sharedData.showFilter {
                 FilterView()
                     .environmentObject(sharedData)
-                    .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .opacity))
+                    .transition(.asymmetric(insertion: .move(edge: .bottom), removal: .move(edge: .bottom)))
             }
         }
     }

@@ -77,9 +77,3 @@ struct PicturesSnapCarousel<Content: View, T: Identifiable>: View {
         .animation(.easeInOut, value: offset == 0)
     }
 }
-
-struct SnapCarousel_Previews: PreviewProvider {
-    static var previews: some View {
-        DetailProductView()
-    }
-}

@@ -82,6 +82,6 @@ struct CartRowView: View {
 
 struct CartRowView_Previews: PreviewProvider {
     static var previews: some View {
-        CartRowView(product: basket.basketProducts[1])
+        CartRowView(product: SharedDataModel().basket.basketProducts[1])
     }
 }

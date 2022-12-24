@@ -77,6 +77,6 @@ struct ProductItemView: View {
 
 struct ProductItemView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductItemView(product: bestSellerProducts[0])
+        ProductItemView(product: SharedDataModel().bestSellerProducts[0])
     }
 }

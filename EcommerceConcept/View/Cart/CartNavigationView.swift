@@ -15,7 +15,7 @@ struct CartNavigationView: View {
         HStack {
             Button {
                 withAnimation {
-                    sharedData.showCard = false
+                    sharedData.showCart = false
                 }
             } label: {
                 Image(systemName: "chevron.backward")
@@ -49,5 +49,6 @@ struct CartNavigationView: View {
 struct CartNavigationView_Previews: PreviewProvider {
     static var previews: some View {
         CartNavigationView()
+            .environmentObject(SharedDataModel())
     }
 }

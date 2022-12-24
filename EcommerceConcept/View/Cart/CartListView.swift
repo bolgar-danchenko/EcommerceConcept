@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct CartListView: View {
+    
+    @EnvironmentObject var sharedData: SharedDataModel
+    
     var body: some View {
         VStack {
             Text("My Cart")
@@ -20,7 +23,7 @@ struct CartListView: View {
                 
                 Spacer()
                 
-                ForEach(basket.basketProducts) { product in
+                ForEach(sharedData.basket.basketProducts) { product in
                     CartRowView(product: product)
                 }
                 .frame(height: 115)
@@ -46,11 +49,11 @@ struct CartListView: View {
                     Spacer()
                     
                     VStack(alignment: .leading, spacing: 10) {
-                        Text("$\(basket.total)")
+                        Text("$\(sharedData.basket.total)")
                             .font(.custom(boldFont, size: 15))
                             .foregroundColor(.white)
                         
-                        Text(basket.delivery)
+                        Text(sharedData.basket.delivery)
                             .font(.custom(boldFont, size: 15))
                             .foregroundColor(.white)
                     }
@@ -93,5 +96,6 @@ struct CartListView: View {
 struct CartListView_Previews: PreviewProvider {
     static var previews: some View {
         CartListView()
+            .environmentObject(SharedDataModel())
     }
 }

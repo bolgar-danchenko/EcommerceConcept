@@ -9,6 +9,8 @@ import SwiftUI
 
 struct DetailProductView: View {
     
+    @EnvironmentObject var sharedData: SharedDataModel
+    
     @State var currentIndex: Int = 0
     @State var images: [Image] = []
     
@@ -34,7 +36,7 @@ struct DetailProductView: View {
             .onAppear {
                 
                 DispatchQueue.main.async {
-                    for imageUrl in detailProduct.pictureUrls {
+                    for imageUrl in sharedData.detailProduct.pictureUrls {
                         guard let safeUrl = imageUrl else { return }
                         DownloadManager().downloadImage(imageUrl: safeUrl) { image in
                             guard let newImage = image else { return }
@@ -57,6 +59,7 @@ struct DetailProductView: View {
 struct DetailProductView_Previews: PreviewProvider {
     static var previews: some View {
         DetailProductView()
+            .environmentObject(SharedDataModel())
     }
 }
 

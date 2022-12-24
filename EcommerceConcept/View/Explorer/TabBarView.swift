@@ -27,7 +27,7 @@ struct TabBarView: View {
             
             Button {
                 withAnimation(.default) {
-                    sharedData.showCard = true
+                    sharedData.showCart = true
                 }
             } label: {
                 ZStack(alignment: .topTrailing) {
@@ -43,7 +43,7 @@ struct TabBarView: View {
                             .frame(width: 15, height: 15)
                         .foregroundColor(.red)
                         
-                        Text("\(basket.basketProducts.count)")
+                        Text("\(sharedData.basket.basketProducts.count)")
                             .font(.custom(mediumFont, size: 10))
                             .foregroundColor(.white)
                     }

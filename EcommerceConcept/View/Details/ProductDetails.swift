@@ -8,10 +8,13 @@
 import SwiftUI
 
 struct ProductDetails: View {
+    
+    @EnvironmentObject var sharedData: SharedDataModel
+    
     var body: some View {
         VStack() {
             HStack {
-                Text(detailProduct.title)
+                Text(sharedData.detailProduct.title)
                     .font(.custom(mediumFont, size: 24))
                     .foregroundColor(Color("Purple"))
                 
@@ -92,7 +95,7 @@ struct ProductDetails: View {
                         .resizable()
                         .frame(width: 28, height: 28)
                     
-                    Text(detailProduct.cpu)
+                    Text(sharedData.detailProduct.cpu)
                         .font(.custom(regularFont, size: 11))
                         .foregroundColor(Color("Gray"))
                 }
@@ -104,7 +107,7 @@ struct ProductDetails: View {
                         .resizable()
                         .frame(width: 28, height: 22)
                     
-                    Text(detailProduct.camera)
+                    Text(sharedData.detailProduct.camera)
                         .font(.custom(regularFont, size: 11))
                         .foregroundColor(Color("Gray"))
                 }
@@ -116,7 +119,7 @@ struct ProductDetails: View {
                         .resizable()
                         .frame(width: 28, height: 21)
                     
-                    Text(detailProduct.ssd)
+                    Text(sharedData.detailProduct.ssd)
                         .font(.custom(regularFont, size: 11))
                         .foregroundColor(Color("Gray"))
                 }
@@ -128,7 +131,7 @@ struct ProductDetails: View {
                         .resizable()
                         .frame(width: 19, height: 22)
                     
-                    Text(detailProduct.sd)
+                    Text(sharedData.detailProduct.sd)
                         .font(.custom(regularFont, size: 11))
                         .foregroundColor(Color("Gray"))
                 }
@@ -149,7 +152,7 @@ struct ProductDetails: View {
             HStack(spacing: 20) {
                 ZStack {
                     Circle()
-                        .foregroundColor(Color(uiColor: UIColor(hex: detailProduct.colorHexCodes[0]) ?? .black))
+                        .foregroundColor(Color(uiColor: UIColor(hex: sharedData.detailProduct.colorHexCodes[0]) ?? .black))
                         .frame(width: 40, height: 40)
                     
                     Image(systemName: "checkmark")
@@ -159,7 +162,7 @@ struct ProductDetails: View {
                 
                 ZStack {
                     Circle()
-                        .foregroundColor(Color(uiColor: UIColor(hex: detailProduct.colorHexCodes[1]) ?? .black))
+                        .foregroundColor(Color(uiColor: UIColor(hex: sharedData.detailProduct.colorHexCodes[1]) ?? .black))
                         .frame(width: 40, height: 40)
                     
                     Image(systemName: "checkmark")
@@ -207,7 +210,7 @@ struct ProductDetails: View {
                     
                     Spacer()
                     
-                    Text("$\(detailProduct.price)")
+                    Text("$\(sharedData.detailProduct.price)")
                         .font(.custom(boldFont, size: 20))
                         .foregroundColor(.white)
                     .padding([.top, .bottom])
@@ -236,5 +239,6 @@ struct ProductDetails: View {
 struct ProductDetails_Previews: PreviewProvider {
     static var previews: some View {
         ProductDetails()
+            .environmentObject(SharedDataModel())
     }
 }

@@ -69,10 +69,3 @@ struct DropdownSelector: View {
         .padding(.horizontal)
     }
 }
-
-struct DropdownSelector_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        DropdownSelector(filter: brandFilter)
-    }
-}

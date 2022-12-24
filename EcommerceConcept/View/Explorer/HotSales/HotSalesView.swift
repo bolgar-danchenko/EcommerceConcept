@@ -34,7 +34,7 @@ struct HotSalesView: View {
             .padding(.trailing, 30)
             
             TabView {
-                ForEach(hotSalesProducts) {
+                ForEach(sharedData.hotSalesProducts) {
                     product in
                     BannerView(product: product)
                         .padding(.all, 15)

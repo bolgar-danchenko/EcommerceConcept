@@ -34,7 +34,10 @@ struct ProductNavigationView: View {
             Spacer()
             
             Button {
-                
+                withAnimation {
+                    sharedData.showDetailProduct = false
+                    sharedData.showCart = true
+                }
             } label: {
                 Image("cart")
                     .resizable()
@@ -51,5 +54,6 @@ struct ProductNavigationView: View {
 struct ProductNavigationView_Previews: PreviewProvider {
     static var previews: some View {
         ProductNavigationView()
+            .environmentObject(SharedDataModel())
     }
 }

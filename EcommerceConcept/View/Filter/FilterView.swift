@@ -56,13 +56,13 @@ struct FilterView: View {
                 
                 //MARK: - Dropdown Selectors
                 
-                DropdownSelector(filter: brandFilter)
+                DropdownSelector(filter: sharedData.brandFilter)
                     .padding(.horizontal)
                 
-                DropdownSelector(filter: priceFilter)
+                DropdownSelector(filter: sharedData.priceFilter)
                     .padding(.horizontal)
                 
-                DropdownSelector(filter: sizeFilter)
+                DropdownSelector(filter: sharedData.sizeFilter)
                     .padding(.horizontal)
             }
             .frame(maxWidth: .infinity, maxHeight: 400)
@@ -80,5 +80,6 @@ struct FilterView: View {
 struct FilterView_Previews: PreviewProvider {
     static var previews: some View {
         FilterView()
+            .environmentObject(SharedDataModel())
     }
 }
