@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Cart: View {
+struct CartView: View {
     
     @EnvironmentObject var sharedData: SharedDataModel
     
@@ -57,7 +57,7 @@ struct Cart: View {
                 Spacer()
                 
                 ForEach(basket.basketProducts) { product in
-                    CartView(product: product)
+                    CartRowView(product: product)
                 }
                 .frame(height: 115)
                 
@@ -131,9 +131,9 @@ struct Cart: View {
     }
 }
 
-struct Cart_Previews: PreviewProvider {
+struct CartView_Previews: PreviewProvider {
     static var previews: some View {
-        Cart()
+        CartView()
             .environmentObject(SharedDataModel())
     }
 }

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CartView: View {
+struct CartRowView: View {
     
     // Making product as binding to update in real time
     var product: BasketProduct
@@ -80,8 +80,8 @@ struct CartView: View {
     }
 }
 
-struct CartView_Previews: PreviewProvider {
+struct CartRowView_Previews: PreviewProvider {
     static var previews: some View {
-        CartView(product: basket.basketProducts[1])
+        CartRowView(product: basket.basketProducts[1])
     }
 }

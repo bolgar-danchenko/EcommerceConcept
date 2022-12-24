@@ -54,6 +54,8 @@ struct FilterView: View {
                 .padding(.trailing, 20)
                 .padding(.bottom, 20)
                 
+                //MARK: - Dropdown Selectors
+                
                 DropdownSelector(filter: brandFilter)
                     .padding(.horizontal)
                 

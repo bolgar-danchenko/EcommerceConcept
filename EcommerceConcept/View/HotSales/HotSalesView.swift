@@ -12,7 +12,7 @@ struct HotSalesView: View {
     @State var product: HotSalesProduct
     
     var body: some View {
-        ZStack {
+        ZStack(alignment: .center) {
             
             AsyncImage(url: product.pictureUrl) { image in
                 image
@@ -22,7 +22,7 @@ struct HotSalesView: View {
                     .frame(maxWidth: .infinity)
                     .background(Color.black)
                     .cornerRadius(10)
-            } placeholder: {
+            } placeholder: { // For case when image is not downloaded
                 ZStack {
                     Color(uiColor: .black)
                         .frame(height: 182)
@@ -34,6 +34,7 @@ struct HotSalesView: View {
             }
             
             VStack(alignment: .leading) {
+                
                 // New label appears only if .isNew == true
                 ZStack {
                     Circle()
@@ -45,8 +46,6 @@ struct HotSalesView: View {
                         .foregroundColor(.white)
                 }.opacity(product.isNew ?? false ? 1 : 0)
                 
-                Spacer()
-                
                 Text(product.title)
                     .font(.custom(boldFont, size: 25))
                     .foregroundColor(.white)
@@ -54,8 +53,6 @@ struct HotSalesView: View {
                 Text(product.subtitle)
                     .font(.custom(regularFont, size: 11))
                     .foregroundColor(.white)
-                
-                Spacer()
                 
                 Button {
                     
@@ -67,6 +64,7 @@ struct HotSalesView: View {
                 .frame(width: 98, height: 23)
                 .background(Color.white)
                 .cornerRadius(5)
+                .padding(.top, 15)
 
             }
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -74,14 +72,12 @@ struct HotSalesView: View {
             .padding(.horizontal, 30)
             .padding(.bottom, 30)
         }
-        .frame(height: 182)
     }
 }
 
 struct HotSalesView_Previews: PreviewProvider {
     static var previews: some View {
         HotSalesView(product: hotSalesProducts[0])
-            .previewLayout(.sizeThatFits)
             .padding()
             .background(Color("Background"))
     }

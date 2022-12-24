@@ -14,7 +14,7 @@ struct EcommerceConceptApp: App {
     
     var body: some Scene {
         WindowGroup {
-            Explorer()
+            ExplorerView()
                 .environmentObject(sharedData)
                 
         }

@@ -12,4 +12,6 @@ class SharedDataModel: ObservableObject {
     @Published var showDetailProduct: Bool = false
     @Published var showCard: Bool = false
     @Published var showFilter: Bool = false
+    
+    @Published var productType: ProductType = .phones
 }
