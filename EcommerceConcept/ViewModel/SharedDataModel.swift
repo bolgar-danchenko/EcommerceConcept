@@ -48,5 +48,4 @@ class SharedDataModel: ObservableObject {
         DropdownOption(value: "5.6 to 6.3 inches"),
         DropdownOption(value: "6.4 to 6.8 inches"),
     ]
-
 }

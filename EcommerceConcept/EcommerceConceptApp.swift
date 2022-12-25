@@ -16,7 +16,6 @@ struct EcommerceConceptApp: App {
         WindowGroup {
             ExplorerView()
                 .environmentObject(sharedData)
-                
         }
     }
 }

@@ -30,6 +30,7 @@ struct CartNavigationView: View {
             
             Text("Add address")
                 .font(.custom(mediumFont, size: 15))
+                .foregroundColor(Color("Purple"))
             
             Button {
                 

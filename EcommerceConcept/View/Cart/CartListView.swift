@@ -15,6 +15,7 @@ struct CartListView: View {
         VStack {
             Text("My Cart")
                 .font(.custom(boldFont, size: 35))
+                .foregroundColor(Color("Purple"))
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.top, 20)
                 .padding(.horizontal, 30)

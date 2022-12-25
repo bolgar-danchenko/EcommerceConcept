@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+// CodingKeys are used to transform JSON names into more common cammelCase format
+
 struct AllProducts: Codable {
     var hotSalesArray: [HotSalesProduct]
     var bestSellerArray: [BestSellerProduct]

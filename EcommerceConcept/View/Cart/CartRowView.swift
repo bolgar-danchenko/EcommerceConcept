@@ -9,7 +9,6 @@ import SwiftUI
 
 struct CartRowView: View {
     
-    // Making product as binding to update in real time
     var product: BasketProduct
     
     var body: some View {

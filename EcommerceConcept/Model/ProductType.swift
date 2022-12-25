@@ -7,6 +7,7 @@
 
 import Foundation
 
+// Used for Categories on the ExplorerView
 enum ProductType: String, CaseIterable {
     case phones = "Phones"
     case computer = "Computer"

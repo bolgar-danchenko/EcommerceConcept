@@ -13,6 +13,8 @@ struct ProductDetails: View {
     
     var body: some View {
         VStack() {
+            
+            // MARK: - General
             HStack {
                 Text(sharedData.detailProduct.title)
                     .font(.custom(mediumFont, size: 24))
@@ -57,6 +59,7 @@ struct ProductDetails: View {
             }
             .padding(.horizontal, 30)
             
+            // MARK: - Tabs
             HStack {
                 Text("Shop")
                     .font(.custom(boldFont, size: 20))
@@ -89,6 +92,7 @@ struct ProductDetails: View {
             .padding(.horizontal, 30)
             .padding(.bottom, 20)
             
+            //MARK: - Pictures
             HStack(alignment: .bottom) {
                 VStack() {
                     Image("cpu")
@@ -139,6 +143,7 @@ struct ProductDetails: View {
             .padding(.horizontal, 30)
             .padding(.top, 10)
             
+            // MARK: - Color and Capacity
             HStack {
                 Text("Select color and capacity")
                     .font(.custom(mediumFont, size: 16))
@@ -199,6 +204,7 @@ struct ProductDetails: View {
             .padding(.horizontal, 30)
             .padding(.bottom, 20)
             
+            // MARK: - Button
             Button {
                 
             } label: {

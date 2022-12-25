@@ -5,7 +5,6 @@
 //  Created by Konstantin Bolgar-Danchenko on 23.12.2022.
 //
 
-import Foundation
 import UIKit
 
 // Extension allows to set UIColors from hex-codes
