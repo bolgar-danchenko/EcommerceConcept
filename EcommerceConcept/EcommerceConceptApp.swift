@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct EcommerceConceptApp: App {
+    
+    @StateObject var sharedData: SharedDataModel = SharedDataModel()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ExplorerView()
+                .environmentObject(sharedData)
         }
     }
 }
