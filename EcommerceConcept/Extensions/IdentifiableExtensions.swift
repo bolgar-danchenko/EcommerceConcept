@@ -13,3 +13,10 @@ extension Image: Identifiable {
         UUID().uuidString
     }
 }
+
+// Extension allows to use URLs on 'ForEach'
+extension URL: Identifiable {
+    public var id: String {
+        UUID().uuidString
+    }
+}

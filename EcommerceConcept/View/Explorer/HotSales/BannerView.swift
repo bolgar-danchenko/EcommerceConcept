@@ -75,10 +75,10 @@ struct BannerView: View {
     }
 }
 
-//struct BannerView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        BannerView(product: hotSalesProducts[0])
-//            .padding()
-//            .background(Color("Background"))
-//    }
-//}
+struct BannerView_Previews: PreviewProvider {
+    static var previews: some View {
+        BannerView(product: SharedDataModel().hotSalesProducts[0])
+            .padding()
+            .background(Color("Background"))
+    }
+}

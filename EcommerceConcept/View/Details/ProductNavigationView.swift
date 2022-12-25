@@ -48,6 +48,7 @@ struct ProductNavigationView: View {
             .cornerRadius(10)
         }
         .padding(.horizontal, 30)
+        .padding(.bottom, 10)
     }
 }
 

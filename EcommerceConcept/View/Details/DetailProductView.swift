@@ -15,39 +15,16 @@ struct DetailProductView: View {
     @State var images: [Image] = []
     
     var body: some View {
-        VStack() {
-            
-            ProductNavigationView()
-            
-            PicturesSnapCarousel(spacing: 20, index: $currentIndex, items: images) { image in
+        
+        ScrollView(.vertical, showsIndicators: false) {
+            VStack(spacing: -5) {
                 
-                GeometryReader { proxy in
-                    
-                    let size = proxy.size
-                    
-                    image
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: size.width)
-                        .cornerRadius(12)
-                }
-            }
-            .frame(maxHeight: .infinity, alignment: .top)
-            .onAppear {
+                ProductNavigationView()
                 
-                DispatchQueue.main.async {
-                    for imageUrl in sharedData.detailProduct.pictureUrls {
-                        guard let safeUrl = imageUrl else { return }
-                        DownloadManager().downloadImage(imageUrl: safeUrl) { image in
-                            guard let newImage = image else { return }
-                            self.images.append(newImage)
-                        }
-                    }
-                }
+                PictureView()
+                
+                ProductDetails()
             }
-            .padding(.top, 10)
-            
-            ProductDetails()
         }
         .ignoresSafeArea()
         .padding(.top, 5)
